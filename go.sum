@@ -6,6 +6,8 @@ github.com/scrapli/scrapligo v0.0.0-20210525201948-51f194b2e010 h1:/JsnYRpS0yqA5
 github.com/scrapli/scrapligo v0.0.0-20210525201948-51f194b2e010/go.mod h1:itZE+qsyMvCMnxccsxMX4ATFqVLDIG/Mw4po4msqwpo=
 github.com/scrapli/scrapligo v0.0.0-20210601180106-667dffb60809 h1:2yJnn8Ibou46S76bt/ecMdcPGEEJhUInVbPF9VGiUKs=
 github.com/scrapli/scrapligo v0.0.0-20210601180106-667dffb60809/go.mod h1:itZE+qsyMvCMnxccsxMX4ATFqVLDIG/Mw4po4msqwpo=
+github.com/scrapli/scrapligo v0.0.0-20210601185115-acff0f312680 h1:EcBop5L0Nzxh3KVScv3P/y8+iPx+5J791lqcC5nO9YU=
+github.com/scrapli/scrapligo v0.0.0-20210601185115-acff0f312680/go.mod h1:itZE+qsyMvCMnxccsxMX4ATFqVLDIG/Mw4po4msqwpo=
 golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b h1:7mWr3k41Qtv8XlltBkDkl8LoP3mpSgBW8BUoxtEdbXg=
 golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b/go.mod h1:T9bdIzuCu7OtxOm1hfPfRQxPLYneinmdGuTeoZ9dtd4=
 golang.org/x/net v0.0.0-20210226172049-e18ecbb05110/go.mod h1:m0MpNAwzfU5UDzcl9v0D8zg8gWTRqZa9RBIspLL5mdg=
