@@ -16,7 +16,7 @@ func NewSRLinuxDriver(
 ) (*network.Driver, error) {
 	defaultPrivilegeLevels := map[string]*base.PrivilegeLevel{
 		"exec": {
-			Pattern:        `(?im)^--{\s[\+\*\s]{1,}running\s}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
+			Pattern:        `(?im)^--{[\+\*\s]{1,}running\s}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
 			Name:           "exec",
 			PreviousPriv:   "",
 			Deescalate:     "",
@@ -26,7 +26,7 @@ func NewSRLinuxDriver(
 		},
 		// configuration privilege level maps to the exclusive config mode on SR Linux
 		"configuration": {
-			Pattern:        `(?im)^--{\s[\+\*\s]{1,}candidate\sprivate\s[\-\w\s]+}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
+			Pattern:        `(?im)^--{[\+\*\s]{1,}candidate\sprivate\s[\-\w\s]+}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
 			Name:           "configuration",
 			PreviousPriv:   "exec",
 			Deescalate:     "discard now",
