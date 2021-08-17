@@ -9,6 +9,13 @@ import (
 	"github.com/scrapli/scrapligo/driver/network"
 )
 
+const (
+	// PTY dimensions to override scrapli defaults,
+	// since width=256 results in too long `---` delimiters in show commands
+	defaultPtyWidth  = 140
+	defaultPtyHeight = 60
+)
+
 // NewSRLinuxDriver returns a driver setup for operation with Nokia SR Linux devices.
 func NewSRLinuxDriver(
 	host string,
@@ -26,7 +33,7 @@ func NewSRLinuxDriver(
 		},
 		// configuration privilege level maps to the exclusive config mode on SR Linux
 		"configuration": {
-			Pattern:        `(?im)^--{[\+\*\s]{1,}candidate\sprivate\s[\-\w\s]+}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
+			Pattern:        `(?im)^--{[\+\*\!\s]{1,}candidate\sprivate\s[\-\w\s]+}--\[.+?\]--\s*\n[abcd]:\S+#\s*$`,
 			Name:           "configuration",
 			PreviousPriv:   "exec",
 			Deescalate:     "discard now",
@@ -42,8 +49,8 @@ func NewSRLinuxDriver(
 
 	const defaultDefaultDesiredPriv = "exec"
 
-	// override default terminal width so that srlinux won't print to much `----`
-	options = append(options, base.WithTransportPtySize(140, 80))
+	// prepend default pty window size
+	options = append([]base.Option{base.WithTransportPtySize(defaultPtyWidth, defaultPtyHeight)}, options...)
 
 	d, err := network.NewNetworkDriver(
 		host,
