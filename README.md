@@ -93,5 +93,9 @@ This function takes the following arguments:
 
 Note, that the network.Driver that is passed as a first argument should not be opened prior to calling this function, as it will be opened with the specific PTY size inside the function.
 
+## Known issues and limitations
+1. scrapligo doesn't assume that a command in configuration context can switch the session to exec priv. level, although this is what SR Linux commands like `commit save` and `commit now` do.  
+    For that reason, if you send configs and up using one of the above mentioned commands, use `d.AcquirePriv()` function to get into the desired privilege level if it doesn't match the previously detected one.
+
 ## Something doesn't work?
 If the driver doesn't work, it is quite likely that the prompt has been changed. SR Linux driver relies on regular expressions defined in `scrapli.go` file for the relevant Privilege Levels. Check if those regular expressions match your prompt, and if not, create an issue or propose a change.
