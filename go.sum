@@ -1,9 +1,10 @@
+github.com/carlmontanari/difflibgo v0.0.0-20210718170140-424f52054f94/go.mod h1:+3MuSIeC3qmdSesR12cTLeb47R/Vvo+bHdB6hC5HShk=
 github.com/creack/pty v1.1.11 h1:07n33Z8lZxZ2qwegKbObQohDhXDQxiMMz1NOUGYlesw=
 github.com/creack/pty v1.1.11/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
-github.com/scrapli/scrapligo v0.0.0-20210704164516-6c3b4e74cfad h1:eb+6BSk5gTJ3rsQ1CfZGfMsoxvo7ZYwKlCTszU1CtJs=
-github.com/scrapli/scrapligo v0.0.0-20210704164516-6c3b4e74cfad/go.mod h1:+csimZHh80jQXjdDdHmAIKCwiXPZvXQ7ZgKEQWmFpK8=
+github.com/scrapli/scrapligo v0.0.0-20210814224131-df0e66d7cd23 h1:PGxU3x/sZQlLgf/ctGow0WWO+NMN3yqoaivwqPJ8kfI=
+github.com/scrapli/scrapligo v0.0.0-20210814224131-df0e66d7cd23/go.mod h1:0tHMgiCiTuWOvSceFU7klaYThXvRZNvc7k+fmQrtH54=
 github.com/sirikothe/gotextfsm v1.0.0 h1:4kKwbUziG9G+31PfLY+vI3FzYK/kcByh4ndT3NyPMkc=
 github.com/sirikothe/gotextfsm v1.0.0/go.mod h1:CJYqpTg9u5VPCoD0VEl9E68prCIiWQD8m457k098DdQ=
 golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b h1:7mWr3k41Qtv8XlltBkDkl8LoP3mpSgBW8BUoxtEdbXg=

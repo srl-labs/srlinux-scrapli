@@ -77,5 +77,25 @@ func main() {
 }
 ```
 
-## Doesn't work?
+## Additional functions
+In addition to providing a scrapligo driver for SR Linux, this package contains convenience functions with additional functionality.
+
+### AddSelfSignedServerTLSProfile
+The `AddSelfSignedServerTLSProfile` function uses SR Linux ability to generate a self-signed certificate and key and uses those two artifacts to create a server TLS profile that is used for securing gNMI, HTTPS, etc.
+
+The intent behind this function is to simplify TLS certificates provisioning in a lab setting, where self-signed certificates are norm. This function is usually called first thing after SR Linux boot process, to ensure that gNMI service can be enabled.
+
+This function takes the following arguments:
+
+* `*network.Driver` - an initialized network driver, which is a result of `srlinux.NewSRLinuxDriver()`
+* `profileName` - a name of the server profile that will be created for the generated key/cert. If empty, the default name `self-signed-tls-profile` will be used.
+* `authClient` - a boolean value indicating if the server TLS profile should have authenticate-client option set to true or false.
+
+Note, that the network.Driver that is passed as a first argument should not be opened prior to calling this function, as it will be opened with the specific PTY size inside the function.
+
+## Known issues and limitations
+1. scrapligo doesn't assume that a command in configuration context can switch the session to exec priv. level, although this is what SR Linux commands like `commit save` and `commit now` do.  
+    For that reason, if you send configs and up using one of the above mentioned commands, use `d.AcquirePriv()` function to get into the desired privilege level if it doesn't match the previously detected one.
+
+## Something doesn't work?
 If the driver doesn't work, it is quite likely that the prompt has been changed. SR Linux driver relies on regular expressions defined in `scrapli.go` file for the relevant Privilege Levels. Check if those regular expressions match your prompt, and if not, create an issue or propose a change.
