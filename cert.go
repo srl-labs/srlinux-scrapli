@@ -7,7 +7,6 @@ import (
 
 	"github.com/scrapli/scrapligo/driver/base"
 	"github.com/scrapli/scrapligo/driver/network"
-	"github.com/scrapli/scrapligo/transport"
 )
 
 const (
@@ -27,12 +26,9 @@ func AddSelfSignedServerTLSProfile(d *network.Driver, profileName string, authCl
 		return errors.New("device driver shouldn't be opened prior calling AddSelfSignedServerTLSProfile function")
 	}
 
-	switch t := d.Transport.(type) {
-	case *transport.System:
-		t.BaseTransportArgs.PtyWidth = 5000
-	case *transport.Standard:
-		t.BaseTransportArgs.PtyWidth = 5000
-	}
+	d.Transport.BaseTransportArgs.PtyWidth = 5000
+	d.Transport.BaseTransportArgs.PtyWidth = 5000
+
 	if err := d.Open(); err != nil {
 		return err
 	}
