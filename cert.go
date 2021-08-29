@@ -27,7 +27,6 @@ func AddSelfSignedServerTLSProfile(d *network.Driver, profileName string, authCl
 	}
 
 	d.Transport.BaseTransportArgs.PtyWidth = 5000
-	d.Transport.BaseTransportArgs.PtyWidth = 5000
 
 	if err := d.Open(); err != nil {
 		return err
