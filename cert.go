@@ -22,14 +22,8 @@ const (
 // a TLS server profile that references those artifacts. TLS profile name defaults to "self-signed-tls-profile"
 // the CLI commands to achieve that are carried with scrapligo *network.Driver that must not be opened prior to calling this func
 func AddSelfSignedServerTLSProfile(d *network.Driver, profileName string, authClient bool) error {
-	if d.Transport.IsAlive() {
-		return errors.New("device driver shouldn't be opened prior calling AddSelfSignedServerTLSProfile function")
-	}
-
-	d.Transport.BaseTransportArgs.PtyWidth = 5000
-
-	if err := d.Open(); err != nil {
-		return err
+	if !d.Transport.IsAlive() {
+		return errors.New("device driver should be opened prior calling AddSelfSignedServerTLSProfile function")
 	}
 
 	if profileName == "" {
@@ -45,7 +39,6 @@ func AddSelfSignedServerTLSProfile(d *network.Driver, profileName string, authCl
 	if err != nil {
 		return err
 	}
-	// key = strings.ReplaceAll(key, "\n", "")
 
 	err = configureTLSProfile(d, profileName, key, cert)
 	return err
