@@ -91,7 +91,40 @@ This function takes the following arguments:
 * `profileName` - a name of the server profile that will be created for the generated key/cert. If empty, the default name `self-signed-tls-profile` will be used.
 * `authClient` - a boolean value indicating if the server TLS profile should have authenticate-client option set to true or false.
 
-Note, that the network.Driver that is passed as a first argument should not be opened prior to calling this function, as it will be opened with the specific PTY size inside the function.
+Note, that the network.Driver that is passed as a first argument should already be opened prior to calling this function and with the `PtyWidth` sufficient to accommodate certificate/key size. For example:
+
+```go
+d, err := srlinux.NewSRLinuxDriver(
+	// some config
+)
+// setting PTY width to 5k chars to accommodate for long strings of key/cert
+d.Transport.BaseTransportArgs.PtyWidth = 5000
+
+transport, _ := d.Transport.Impl.(*transport.System)
+transport.SetExecCmd("docker")
+transport.SetOpenCmd([]string{"exec", "-u", "root", "-it", contName, "sr_cli", "-d"})
+
+_ := d.Open()
+
+_ := srlinux.WaitSRLMgmtSrv(context.TODO(), d)
+```
+
+### WaitSRLMgmtSrv
+This function return a nil error when we ensure that SR Linux management server is started and ready to accept configuration commands. The main purpose of this function is to ensure that if the SR Linux node has just been started we won't start configuring it before it is ready.
+
+An example could be defined like follows:
+
+```go
+// open a driver
+_ := d.Open()
+
+// wait till we can proceed with configs
+if err := srlinux.WaitSRLMgmtSrv(context.TODO(), d); err != nil {
+	log.Fatal(err)
+}
+// start sending config commands
+_ = srlinux.AddSelfSignedServerTLSProfile(d, tlsProfileName, false)
+```
 
 ## Known issues and limitations
 1. scrapligo doesn't assume that a command in configuration context can switch the session to exec priv. level, although this is what SR Linux commands like `commit save` and `commit now` do.  
