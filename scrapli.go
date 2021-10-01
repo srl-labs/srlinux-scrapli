@@ -16,8 +16,11 @@ const (
 	defaultPtyHeight = 60
 )
 
+// NewSRLinuxDriver global var allows to rewrite the driver initialization function for patched variant in testing
+var NewSRLinuxDriver = newSRLinuxDriver
+
 // NewSRLinuxDriver returns a driver setup for operation with Nokia SR Linux devices.
-func NewSRLinuxDriver(
+func newSRLinuxDriver(
 	host string,
 	options ...base.Option,
 ) (*network.Driver, error) {
@@ -115,4 +118,15 @@ func SRLinuxAbortConfig(d *network.Driver) (*base.Response, error) {
 	d.CurrentPriv = "exec"
 
 	return nil, err
+}
+
+// NewPatchedSRLinuxDriver returns a new driver and allows to rewrite the default function NewSRLinuxDriver
+func NewPatchedSRLinuxDriver(
+	host string,
+	options ...base.Option,
+) (*network.Driver, error) {
+	return newSRLinuxDriver(
+		host,
+		options...,
+	)
 }
