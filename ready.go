@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	readyTimeout = 30 * time.Second
+	readyTimeout = 3 * time.Minute
 	retryTimer   = 2 * time.Second
 
 	mgmtServerRdyCmd  = "info from state system app-management application mgmt_server state | grep running"
