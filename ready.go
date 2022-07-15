@@ -19,9 +19,9 @@ const (
 
 var ()
 
-// WaitSRLMgmtSrv returns when the node boot sequence reached the stage when it is ready to accept config commands
-// returns an error if not ready by the expiry of the timer readyTimeout.
-func WaitSRLMgmtSrv(ctx context.Context, d *network.Driver) error {
+// WaitSRLMgmtSrvReady returns when the node boot sequence reaches the stage when it is ready to accept config commands
+// returns an error if not ready by readyTimeout.
+func WaitSRLMgmtSrvReady(ctx context.Context, d *network.Driver) error {
 	ctx, cancel := context.WithTimeout(ctx, readyTimeout)
 	defer cancel()
 
