@@ -1,7 +1,8 @@
 # SR Linux driver for Scrapligo
 
-> **Warning**
-> This project has been archived, because @carlmontanari is a beast who has made the whole process of adding a custom community platform as easy as writing a yaml file. Check out scrapligo v1 and [srlinux platform definition file](https://github.com/scrapli/scrapligo/blob/main/assets/platforms/nokia_srl.yaml).
+> **Warning**  
+> @carlmontanari made the whole process of adding a custom community platform as easy as writing a yaml file. Check out scrapligo v1 and [srlinux platform definition file](https://github.com/scrapli/scrapligo/blob/main/assets/platforms/nokia_srl.yaml).  
+> For that reason, the srlinux network driver that is part of this repo is not needed anymore. Additional functions, though, such as Generate TLS profile, are still maintained and used. 
 
 This module adds [Nokia SR Linux](https://www.nokia.com/networks/products/service-router-linux-NOS/) platform support for [scrapligo](https://github.com/scrapli/scrapligo) project.
 
