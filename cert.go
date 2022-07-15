@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/scrapli/scrapligo/driver/base"
 	"github.com/scrapli/scrapligo/driver/network"
+	"github.com/scrapli/scrapligo/driver/opoptions"
 )
 
 const (
@@ -68,11 +68,14 @@ func configureTLSProfile(d *network.Driver, profileName, key, cert string) error
 		return err
 	}
 	// key and cert are send outside of sendconfigs, because it was not working properly with `eager` option
-	_, err = d.SendConfig(fmt.Sprintf("set / system tls server-profile %s key \"%s\"", profileName, key), base.WithSendEager(true))
+	_, err = d.SendConfig(fmt.Sprintf("set / system tls server-profile %s key \"%s\"", profileName, key),
+		opoptions.WithEager(),
+	)
 	if err != nil {
 		return err
 	}
-	_, err = d.SendConfig(fmt.Sprintf("set / system tls server-profile %s certificate \"%s\"", profileName, cert), base.WithSendEager(true))
+	_, err = d.SendConfig(fmt.Sprintf("set / system tls server-profile %s certificate \"%s\"", profileName, cert),
+		opoptions.WithEager())
 	if err != nil {
 		return err
 	}

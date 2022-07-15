@@ -30,7 +30,7 @@ func WaitSRLMgmtSrv(ctx context.Context, d *network.Driver) error {
 	for {
 		select {
 		case <-ctx.Done():
-			return fmt.Errorf("timed out waiting for SR Linux node %s to boot: %v", d.Host, err)
+			return fmt.Errorf("timed out waiting for SR Linux node %s to boot: %v", d.Transport.GetHost(), err)
 		default:
 			// two commands are checked, first if the mgmt_server is running
 			resp, err := d.SendCommand(mgmtServerRdyCmd)
